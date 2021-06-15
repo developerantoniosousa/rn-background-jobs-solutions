@@ -55,9 +55,15 @@ const App: () => Node = () => {
 };
 
 const LogItem = ({log}) => {
+  function getFormattedDateToLocalPattern(isoDateString) {
+    return new Date(isoDateString).toLocaleString()
+  }
+
   return (
     <View style={styles.logContainer}>
-      <Text style={styles.logTime}>{log.time}</Text>
+      <Text style={styles.logTime}>
+        {getFormattedDateToLocalPattern(log.time)}
+      </Text>
     </View>
   );
 }

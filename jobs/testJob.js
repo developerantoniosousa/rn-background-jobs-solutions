@@ -1,22 +1,32 @@
 import BackgroundJob from 'react-native-background-job';
 import {AppState} from 'react-native';
 
+import {store} from '../state/store';
+import {Actions} from '../state/logs';
+
 const JOB_KEY = 'testjob';
 const JOB_PERIOD_IN_MILLIS = 1000 * 10;
 const BACKGROUND_SCHEDULE = {
     jobKey: JOB_KEY,
     allowWhileIdle: true,
     period: JOB_PERIOD_IN_MILLIS,
-    networkType: BackgroundJob.NETWORK_TYPE_UNMETERED
+    networkType: BackgroundJob.NETWORK_TYPE_UNMETERED,
 };
 
 export function testJob() {
 
     function job() {
+        const log = {
+            id: Math.random(),
+            time: new Date().toISOString()
+        }
+
         console.log({
-            mode: "Running in background",
-            appState: AppState.currentState
+            appState: AppState.currentState,
+            log,
         })
+
+        store.dispatch(Actions.addLog(log));
     }
 
     const backgroundJob = {

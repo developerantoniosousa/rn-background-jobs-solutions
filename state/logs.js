@@ -13,7 +13,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
             ...state,
             data: [
                 ...state.data,
-                ...action.payload.log
+                action.payload.log
             ]
         }
     }
@@ -28,6 +28,6 @@ function addLog(log) {
     }
 }
 
-export const Actions = () => ({
+export const Actions = ({
     addLog
 });
