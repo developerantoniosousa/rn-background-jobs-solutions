@@ -1,7 +1,7 @@
 import BackgroundJob from 'react-native-background-job';
 import {AppState} from 'react-native';
 
-import {store} from '../state/store';
+import {store, rehydration} from '../state/store';
 import {Actions} from '../state/logs';
 
 const JOB_KEY = 'testjob';
@@ -15,16 +15,18 @@ const BACKGROUND_SCHEDULE = {
 
 export function testJob() {
 
-    function job() {
+    async function job() {
+        await rehydration();
+
         const log = {
             id: Math.random(),
             time: new Date().toISOString()
-        }
+        };
 
         console.log({
             appState: AppState.currentState,
             log,
-        })
+        });
 
         store.dispatch(Actions.addLog(log));
     }

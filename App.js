@@ -19,15 +19,18 @@ import {
 } from 'react-native';
 import {Provider} from 'react-redux';
 import {useSelector} from 'react-redux';
+import {PersistGate} from 'redux-persist/src/integration/react'
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {store} from './state/store';
+import {store, persistor} from './state/store';
 
 const AppDelegate = () => (
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <PersistGate persistor={persistor}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </PersistGate>
 );
 
 const App: () => Node = () => {
