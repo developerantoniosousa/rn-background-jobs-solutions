@@ -8,7 +8,8 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "rm:js:cache": "rm -r node_modules"
+    "rm:js:cache": "rm -r node_modules",
+    "rm:android:cache": "rm -r android/app/build"
   },
   "dependencies": {
     "react": "17.0.1",
